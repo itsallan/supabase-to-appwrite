@@ -1,36 +1,164 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Supabase to Appwrite Migration Tool
+
+A powerful, user-friendly tool to migrate your data from Supabase to Appwrite with automatic schema analysis and creation.
+
+![Migration Tool Screenshot](./public/screenshot.png)
+
+## Features
+
+- 🚀 **Automatic Schema Analysis**: Detects Supabase table structure and creates matching Appwrite attributes
+- 🔄 **Seamless Data Migration**: Transfers your data with proper type conversion and field mapping
+- 📊 **Real-time Progress Tracking**: Visualizes migration progress with detailed statistics
+- 🛑 **Cancellation Support**: Safely stop migrations in progress
+- 🧪 **Schema Validation**: Ensures data compatibility before migration
+- 🔐 **Secure Credential Handling**: Properly manages API keys and credentials
+- 🎯 **Batch Processing**: Efficiently handles large datasets
+- ⚡ **TypeScript Support**: Built with type safety in mind
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 16.x or higher
+- npm or yarn
+- A Supabase project with data you want to migrate
+- An Appwrite project to migrate to
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/supabase-to-appwrite.git
+
+# Navigate to the project directory
+cd supabase-to-appwrite
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage Guide
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Prepare Your Appwrite Project
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Before starting the migration:
 
-## Learn More
+1. Create an Appwrite project
+2. Create a database in Appwrite
+3. Create an API key with the following permissions:
+   - `collections.read`
+   - `documents.write`
+   - `attributes.write`
 
-To learn more about Next.js, take a look at the following resources:
+### 2. Enter Credentials
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+In the migration tool:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Enter your Supabase URL (e.g., `https://yourproject.supabase.co`)
+2. Enter your Supabase anon key
+3. Enter your Appwrite endpoint (e.g., `https://cloud.appwrite.io/v1`)
+4. Enter your Appwrite project ID
+5. Enter your Appwrite API key
 
-## Deploy on Vercel
+### 3. Set Up Collection Mapping
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+For each Supabase table you want to migrate:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Enter the Supabase table name
+2. Enter the Appwrite database ID
+3. Enter the Appwrite collection ID
+
+You can add multiple collection mappings by clicking "Add Collection".
+
+### 4. Analyze Schema
+
+For each collection mapping:
+
+1. Click "Analyze & Create Schema"
+2. The tool will:
+   - Analyze your Supabase table structure
+   - Detect field types and constraints
+   - Create matching attributes in your Appwrite collection
+   - Show you which fields were detected and created
+
+### 5. Start Migration
+
+Once schema analysis is complete:
+
+1. Click "Start Migration"
+2. Monitor the progress through:
+   - Progress bar showing completion percentage
+   - Logs showing migration status
+   - Success/error counting
+
+If needed, you can cancel the migration by clicking "Cancel Migration".
+
+## Understanding the UI
+
+### Credentials Form
+Enter your Supabase and Appwrite credentials here. All fields are required.
+
+### Collection Mapping
+Map your Supabase tables to Appwrite collections. You can add multiple mappings.
+
+### Schema Analyzer
+Analyzes and creates schema for each collection mapping. This step must be completed before migration.
+
+### Progress Tracking
+During migration, shows:
+- Current collection being migrated
+- Number of records processed
+- Percentage complete
+- Visual progress bar
+
+### Logs
+Shows detailed logs about the migration process:
+- Schema analysis results
+- Migration progress updates
+- Success and error messages
+
+## Troubleshooting
+
+### Common Issues
+
+#### "Failed to get collection schema"
+- Ensure your Appwrite API key has `collections.read` permission
+- Verify the Appwrite database ID and collection ID are correct
+
+#### "Invalid document structure"
+- Run the schema analysis again to ensure all fields exist in Appwrite
+- Check for data type mismatches
+
+#### "Migration process failed"
+- Check your network connection
+- Verify your credentials are correct
+- Ensure your Appwrite project has sufficient storage
+
+### Advanced Configuration
+
+For more advanced configurations, check the following files:
+
+- `src/components/database-migration/index.tsx`: Main migration logic
+- `src/components/database-migration/schema-analyzer.tsx`: Schema analysis logic
+- `src/lib/types.ts`: Type definitions
+
+## Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Built with React, TypeScript, and Next.js
+- UI components from shadcn/ui
+- Styling with Tailwind CSS
+
+---
+
+Made with ❤️ by [@itsallan](https://github.com/itsallan). Happy migrating!
