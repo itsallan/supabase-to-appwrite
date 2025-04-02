@@ -107,6 +107,8 @@ Map your Supabase tables to Appwrite collections. You can add multiple mappings.
 ### Schema Analyzer
 Analyzes and creates schema for each collection mapping. This step must be completed before migration.
 
+> **Note**: For detailed information about how the Schema Analyzer works, please see [SCHEMA_ANALYZER.md](SCHEMA_ANALYZER.md)
+
 ### Progress Tracking
 During migration, shows:
 - Current collection being migrated
@@ -136,6 +138,11 @@ Shows detailed logs about the migration process:
 - Check your network connection
 - Verify your credentials are correct
 - Ensure your Appwrite project has sufficient storage
+
+### Documentation
+
+- **[SCHEMA_ANALYZER.md](SCHEMA_ANALYZER.md)**: Detailed documentation on the schema analyzer component
+- **README.md**: This file, with general usage instructions
 
 ### Advanced Configuration
 
